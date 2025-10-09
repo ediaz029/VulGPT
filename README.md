@@ -1,4 +1,4 @@
-# Senior-Project-TAMUSA
+# VulGPT
 Senior Project TAMUSA
 
 # Dockerized Vulnerability Detection Tool
