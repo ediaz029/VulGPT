@@ -1,4 +1,5 @@
 from routers.items import router as osv_vulnerabilities_router
+from routers.llm_scanner import router as llm_scanner_router
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from osv.download_ecosystem_data import download_and_extract_all_ecosystems
@@ -22,6 +23,7 @@ app.add_middleware(
 
 app.include_router(osv_vulnerabilities_router, prefix="/items/osv_vulnerabilities", tags=["OSV_Vulnerabilities"])
 app.include_router(timeline_router, prefix="/items", tags=["vulnerability_timeline"])
+app.include_router(llm_scanner_router, prefix="/llm", tags=["LLM_Vulnerability_Scanner"])
 
 @app.get("/")
 def main():
@@ -38,7 +40,7 @@ async def update_osv_vulnerabilities():
     mapper = VulnerabilityRepoMapper()
     if mapper.connect():
         try:
-            mapper.build_minimal_hitting_sets_per_package("OSV")
+            mapper.build_minimal_hitting_sets_per_package(repo_name="OSV")
         except Exception as e:
             print(f"Error building minimal hitting sets: {e}")
         finally:
@@ -58,7 +60,7 @@ async def compute_minimal_hitting_sets():
     mapper = VulnerabilityRepoMapper()
     try:
         if mapper.connect():
-            result = mapper.build_minimal_hitting_sets_per_package("OSV")
+            result = mapper.build_minimal_hitting_sets_per_package(repo_name="OSV")
             return result
         else:
             raise HTTPException(status_code=500, detail="Failed to connect to Neo4j database")

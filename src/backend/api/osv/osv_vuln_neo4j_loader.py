@@ -88,12 +88,12 @@ def insert_batch_vulnerabilities_to_neo4j(batch_vuln_data, driver):
                 """, ids=[vuln.get('id') for vuln in updates])
                 
                 # Then process the updates
-                session.write_transaction(insert_batch_vulnerabilities, updates)
+                session.execute_write(insert_batch_vulnerabilities, updates)
         
         # Process inserts
         if inserts:
             with driver.session() as session:
-                session.write_transaction(insert_batch_vulnerabilities, inserts)
+                session.execute_write(insert_batch_vulnerabilities, inserts)
         
         print(f"Successfully processed {len(batch_vuln_data)} vulnerabilities in Neo4j.")
         return len(batch_vuln_data)
