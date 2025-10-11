@@ -72,6 +72,27 @@ Open your browser and go to:
 
 ### ✅ Current Behavior
 - The backend runs a FastAPI server  
+- The backend includes an **LLM-powered vulnerability scanner** that chunks repository code and queries a local Ollama model (e.g., `mistral:7b-instruct-q4_0`) for structured vulnerability leads.
+
+### 🤖 LLM Scanner Overview
+- `src/backend/tasks/run_vulnerability_scanner.py` orchestrates the scan. It reads the checkout manifest, slices files into context-friendly chunks, and calls `VulnerabilityScanner`.
+- `src/backend/api/llm/vulnerability_scanner.py` prepares prompts that enforce a Pydantic-defined YAML schema, invokes Ollama via `httpx`, and parses the model output into actionable findings.
+- Generated leads are written to JSON artifacts such as `data/scanner_findings.json`, which include chunk metadata and CWE-classified leads for downstream triage.
+
+To run the scanner manually once repositories are checked out:
+
+```bash
+PYTHONPATH=src uv run --project src/backend/api \
+	src/backend/tasks/run_vulnerability_scanner.py \
+	--manifest data/checkout_manifest.json \
+	--output data/scanner_findings.json \
+	--ollama-url http://localhost:11434 \
+	--model mistral:7b-instruct-q4_0 \
+	--chunk-size 1200 \
+	--concurrency 1
+```
+
+> ℹ️  Ensure the Ollama container is running (`docker compose up ollama`) and that the target model is pulled before executing the scanner.
 
 ---
 
