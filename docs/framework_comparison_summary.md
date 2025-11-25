@@ -15,6 +15,14 @@ Which AI framework should VulGPT use for vulnerability scoring: Google ADK or Mi
 
 ---
 
+## Reproducibility
+- **Test runs**: 3 independent runs, results consistent across all
+- **Code availability**: Benchmark script at `src/backend/semantic_kernel_scorer/run_benchmark.py`
+- **Raw data**: Full results in `data/framework_comparison_results.json` (569 lines)
+- **Version pinning**: ADK 1.16+, Semantic Kernel 1.36+, Python 3.13
+
+---
+
 ## ✅ Results Summary
 
 | Metric | ADK (Google) | SK (OpenAI) | Winner |
