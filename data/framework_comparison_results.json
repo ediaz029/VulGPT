@@ -1,0 +1,569 @@
+{
+  "results": [
+    {
+      "test_id": "test_001",
+      "category": "sql_injection",
+      "expected_score": 1,
+      "lead": {
+        "headline": "SQL Injection in user authentication",
+        "analysis": "User-supplied credentials are directly concatenated into SQL query without parameterization",
+        "cwe": "CWE-89",
+        "function_names": [
+          "authenticate_user",
+          "build_query"
+        ],
+        "filenames": [
+          "auth/login.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-1234",
+          "summary": "SQL injection vulnerability in authentication module",
+          "details": "The authenticate_user function concatenates user input into SQL queries",
+          "aliases": [
+            "CVE-2024-1234"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The lead candidate's headline 'SQL Injection in user authentication' and analysis 'User-supplied credentials are directly concatenated into SQL query without parameterization' perfectly match the ground truth's summary 'SQL injection vulnerability in authentication module' and details 'The authenticate_user function concatenates user input into SQL queries'. Both also specifically mention the 'authenticate_user' function. The CWE-89 (SQL Injection) further confirms the match.",
+        "corresponds_to": "GHSA-2024-1234",
+        "source": "adk",
+        "latency_ms": 4400.92,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a SQL injection vulnerability in user authentication, which aligns with CWE-89. The function names and the description of the issue closely match the ground truth vulnerability GHSA-2024-1234, which also involves the authenticate_user function and the same type of vulnerability.",
+        "corresponds_to": "GHSA-2024-1234",
+        "source": "semantic_kernel",
+        "latency_ms": 4157.58,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_002",
+      "category": "xss",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Cross-Site Scripting in comment rendering",
+        "analysis": "User comments are rendered without HTML escaping, allowing script injection",
+        "cwe": "CWE-79",
+        "function_names": [
+          "render_comment",
+          "display_user_content"
+        ],
+        "filenames": [
+          "views/comments.js"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-5678",
+          "summary": "Stored XSS vulnerability in comment system",
+          "details": "User-generated comments are not sanitized before display",
+          "aliases": [
+            "CVE-2024-5678"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The lead candidate's headline 'Cross-Site Scripting in comment rendering' and analysis 'User comments are rendered without HTML escaping, allowing script injection' perfectly match the ground truth vulnerability's summary 'Stored XSS vulnerability in comment system' and details 'User-generated comments are not sanitized before display'. Both describe a Cross-Site Scripting (CWE-79) issue related to user comments not being properly sanitized or escaped before display, leading to script injection.",
+        "corresponds_to": "GHSA-2024-5678",
+        "source": "adk",
+        "latency_ms": 4021.01,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a Cross-Site Scripting (XSS) vulnerability due to the lack of HTML escaping in user comments, which aligns with CWE-79. The ground truth vulnerability also pertains to a stored XSS issue in a comment system, indicating a clear match in vulnerability type and affected components.",
+        "corresponds_to": "GHSA-2024-5678",
+        "source": "semantic_kernel",
+        "latency_ms": 2432.19,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_003",
+      "category": "path_traversal",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Path Traversal in file download endpoint",
+        "analysis": "User-provided filename is used without validation, allowing access to arbitrary files",
+        "cwe": "CWE-22",
+        "function_names": [
+          "download_file"
+        ],
+        "filenames": [
+          "api/files.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-9012",
+          "summary": "Directory traversal in file download API",
+          "details": "Insufficient path validation allows reading arbitrary files",
+          "aliases": [
+            "CVE-2024-9012"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "Both the lead candidate and the ground truth describe a 'Path Traversal' or 'Directory traversal' vulnerability (CWE-22) in a file download endpoint/API. The analysis/details for both mention 'user-provided filename'/'insufficient path validation' leading to 'access to arbitrary files'/'reading arbitrary files'. The descriptions are highly consistent.",
+        "corresponds_to": "GHSA-2024-9012",
+        "source": "adk",
+        "latency_ms": 3314.88,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a path traversal vulnerability that aligns with CWE-22 and matches the ground truth vulnerability's summary and details. Both involve insufficient validation of user-provided filenames in a file download context, indicating a clear correspondence.",
+        "corresponds_to": "GHSA-2024-9012",
+        "source": "semantic_kernel",
+        "latency_ms": 3127.66,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_004",
+      "category": "false_positive_vague",
+      "expected_score": 0,
+      "lead": {
+        "headline": "Potential security issue in data processing",
+        "analysis": "The system processes user data which could potentially be exploited",
+        "cwe": "CWE-20",
+        "function_names": [
+          "process_data"
+        ],
+        "filenames": [
+          "utils/processor.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-3456",
+          "summary": "Command injection in image processing",
+          "details": "Image metadata is passed to shell command without sanitization",
+          "aliases": [
+            "CVE-2024-3456"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 0,
+        "reasoning": "The candidate lead describes a generic 'potential security issue in data processing' involving user data and `process_data` in `utils/processor.py` with CWE-20. The ground truth vulnerability, GHSA-2024-3456, is specifically about 'Command injection in image processing' where 'Image metadata is passed to shell command without sanitization'. The types of data, the specific vulnerability (generic exploitation vs. command injection), and the affected domain (general data processing vs. image processing) are distinct and do not align. Therefore, the lead does not correspond to the ground truth vulnerability.",
+        "corresponds_to": null,
+        "source": "adk",
+        "latency_ms": 3784.05,
+        "error": null
+      },
+      "sk": {
+        "score": 0,
+        "reasoning": "The lead candidate describes a potential security issue related to data processing but does not provide specific details that align with the known vulnerability in the ground truth. The ground truth vulnerability involves command injection, which is a different type of issue than what is suggested by the lead. Therefore, there is no clear match.",
+        "corresponds_to": null,
+        "source": "semantic_kernel",
+        "latency_ms": 1982.57,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_005",
+      "category": "false_positive_wrong_type",
+      "expected_score": 0,
+      "lead": {
+        "headline": "Buffer overflow in string parsing",
+        "analysis": "Fixed-size buffer can overflow when processing long input strings",
+        "cwe": "CWE-120",
+        "function_names": [
+          "parse_string"
+        ],
+        "filenames": [
+          "parser.c"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-7890",
+          "summary": "SQL injection in search functionality",
+          "details": "Search queries are concatenated without parameterization",
+          "aliases": [
+            "CVE-2024-7890"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 0,
+        "reasoning": "The lead candidate describes a 'Buffer overflow' (CWE-120) in string parsing, while the ground truth vulnerability 'GHSA-2024-7890' describes a 'SQL injection' vulnerability. These are distinct types of security issues, so there is no match.",
+        "corresponds_to": null,
+        "source": "adk",
+        "latency_ms": 2313.58,
+        "error": null
+      },
+      "sk": {
+        "score": 0,
+        "reasoning": "The lead candidate describes a buffer overflow vulnerability (CWE-120) related to string parsing, while the ground truth vulnerability is an SQL injection issue. There is no overlap in vulnerability type, affected components, or description, indicating that the lead does not correspond to any known vulnerabilities.",
+        "corresponds_to": null,
+        "source": "semantic_kernel",
+        "latency_ms": 1632.15,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_006",
+      "category": "true_negative_no_vuln",
+      "expected_score": 0,
+      "lead": {
+        "headline": "Insecure deserialization in session handler",
+        "analysis": "Session data is deserialized without integrity checks",
+        "cwe": "CWE-502",
+        "function_names": [
+          "load_session"
+        ],
+        "filenames": [
+          "session.py"
+        ]
+      },
+      "ground_truth": [],
+      "adk": {
+        "score": 0,
+        "reasoning": "No ground-truth vulnerabilities were provided, so the candidate lead cannot correspond to any of them.",
+        "corresponds_to": null,
+        "source": "adk",
+        "latency_ms": 1120.16,
+        "error": null
+      },
+      "sk": {
+        "score": 0,
+        "reasoning": "There are no ground truth vulnerabilities provided to compare against the lead candidate. Therefore, it is not possible to determine if the lead corresponds to a real vulnerability.",
+        "corresponds_to": null,
+        "source": "semantic_kernel",
+        "latency_ms": 2188.64,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_007",
+      "category": "memory_leak",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Memory leak in build process",
+        "analysis": "Heap memory is leaked into the final executable during packaging",
+        "cwe": "CWE-401",
+        "function_names": [
+          "build_package"
+        ],
+        "filenames": [
+          "builder.js"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-mem1",
+          "summary": "Memory leak during build exposes sensitive data",
+          "details": "Build process leaks Node.js heap memory into output",
+          "aliases": [
+            "CVE-2024-mem1"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The lead's headline 'Memory leak in build process' and analysis 'Heap memory is leaked into the final executable during packaging' closely match the ground truth vulnerability GHSA-2024-mem1's summary 'Memory leak during build exposes sensitive data' and details 'Build process leaks Node.js heap memory into output'. Both describe a memory leak occurring during the build/packaging process, involving heap memory leaking into the output. The ground truth's mention of 'Node.js' is consistent with the lead's 'builder.js' filename, further strengthening the match.",
+        "corresponds_to": "GHSA-2024-mem1",
+        "source": "adk",
+        "latency_ms": 4751.49,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a memory leak during the build process, which aligns with the ground truth vulnerability GHSA-2024-mem1 that also discusses a memory leak in the build process. Both share the same CWE classification (CWE-401) and involve similar components, specifically related to Node.js and the build process.",
+        "corresponds_to": "GHSA-2024-mem1",
+        "source": "semantic_kernel",
+        "latency_ms": 2117.68,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_008",
+      "category": "timing_attack",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Authentication bypass via timing attack",
+        "analysis": "Token comparison uses non-constant-time equality check",
+        "cwe": "CWE-208",
+        "function_names": [
+          "verify_token"
+        ],
+        "filenames": [
+          "auth/verify.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-time1",
+          "summary": "Timing attack in bearer authentication",
+          "details": "Token verification allows timing-based token length estimation",
+          "aliases": [
+            "CVE-2024-time1"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes an 'Authentication bypass via timing attack' due to a 'non-constant-time equality check' in token comparison, with CWE-208. The ground truth vulnerability 'GHSA-2024-time1' is summarized as 'Timing attack in bearer authentication' with details stating 'Token verification allows timing-based token length estimation'. Both descriptions align perfectly regarding the type of vulnerability (timing attack), the affected context (authentication/token verification), and the underlying mechanism/consequence (non-constant-time comparison leading to information leakage like length estimation).",
+        "corresponds_to": "GHSA-2024-time1",
+        "source": "adk",
+        "latency_ms": 4135.88,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes an authentication bypass via a timing attack, which aligns with the ground truth vulnerability that also involves a timing attack in bearer authentication. Both the CWE classification (CWE-208) and the affected function (verify_token) are consistent with the details of the ground truth vulnerability.",
+        "corresponds_to": "GHSA-2024-time1",
+        "source": "semantic_kernel",
+        "latency_ms": 4092.05,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_009",
+      "category": "false_positive_wrong_function",
+      "expected_score": 0,
+      "lead": {
+        "headline": "SQL injection in export function",
+        "analysis": "Export query concatenates user filters without sanitization",
+        "cwe": "CWE-89",
+        "function_names": [
+          "export_data"
+        ],
+        "filenames": [
+          "export.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-import1",
+          "summary": "SQL injection in import function",
+          "details": "Import functionality has SQL injection in column mapping",
+          "aliases": [
+            "CVE-2024-import1"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 0,
+        "reasoning": "Both the lead candidate and the ground truth describe SQL injection vulnerabilities (CWE-89 for the lead, explicit for the ground truth). However, the lead candidate specifically points to an 'export function' and 'export_data' in 'export.py', related to 'user filters'. The ground truth, identified by 'GHSA-2024-import1', clearly states the vulnerability is in an 'import function' and 'Import functionality', related to 'column mapping'. These are distinct functionalities within an application, meaning they are different vulnerabilities.",
+        "corresponds_to": null,
+        "source": "adk",
+        "latency_ms": 3332.05,
+        "error": null
+      },
+      "sk": {
+        "score": 0,
+        "reasoning": "The lead candidate describes a SQL injection vulnerability (CWE-89) in an export function, while the ground truth vulnerability pertains to an import function. The affected components and the nature of the vulnerabilities do not align, leading to a conclusion that they are different issues.",
+        "corresponds_to": null,
+        "source": "semantic_kernel",
+        "latency_ms": 2084.41,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_010",
+      "category": "csrf",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Cross-Site Request Forgery in settings update",
+        "analysis": "Settings endpoint lacks CSRF token validation",
+        "cwe": "CWE-352",
+        "function_names": [
+          "update_settings"
+        ],
+        "filenames": [
+          "api/settings.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-csrf1",
+          "summary": "CSRF vulnerability in account settings",
+          "details": "Settings modification endpoint missing CSRF protection",
+          "aliases": [
+            "CVE-2024-csrf1"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The candidate lead describes a Cross-Site Request Forgery (CSRF) vulnerability in a settings update endpoint due to a lack of CSRF token validation. The ground truth vulnerability GHSA-2024-csrf1 also describes a 'CSRF vulnerability in account settings' where the 'Settings modification endpoint' is 'missing CSRF protection'. Both descriptions align perfectly regarding the type of vulnerability (CSRF), the affected area (settings), and the root cause (missing protection/validation). The CWE-352 in the lead candidate confirms it is a CSRF issue.",
+        "corresponds_to": "GHSA-2024-csrf1",
+        "source": "adk",
+        "latency_ms": 3067.09,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a Cross-Site Request Forgery (CSRF) vulnerability in a settings update, which aligns with the CWE-352 classification. The ground truth vulnerability also pertains to a CSRF issue in a settings modification endpoint, indicating a clear match in both the type of vulnerability and the affected functionality.",
+        "corresponds_to": "GHSA-2024-csrf1",
+        "source": "semantic_kernel",
+        "latency_ms": 2263.5,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_011",
+      "category": "rce_template_injection",
+      "expected_score": 1,
+      "lead": {
+        "headline": "Remote Code Execution via template injection",
+        "analysis": "User input is evaluated in template context without sandboxing",
+        "cwe": "CWE-94",
+        "function_names": [
+          "render_template"
+        ],
+        "filenames": [
+          "templates/engine.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-sqli2",
+          "summary": "SQL injection in reporting module",
+          "details": "Report queries lack parameterization",
+          "aliases": [
+            "CVE-2024-sqli2"
+          ]
+        },
+        {
+          "id": "GHSA-2024-rce1",
+          "summary": "Template injection leads to RCE",
+          "details": "Template engine evaluates user input as code",
+          "aliases": [
+            "CVE-2024-rce1"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 1,
+        "reasoning": "The lead candidate's headline 'Remote Code Execution via template injection' directly matches the summary of 'GHSA-2024-rce1', which is 'Template injection leads to RCE'. Both describe the same vulnerability type and impact. The analysis 'User input is evaluated in template context without sandboxing' is consistent with the details 'Template engine evaluates user input as code'.",
+        "corresponds_to": "GHSA-2024-rce1",
+        "source": "adk",
+        "latency_ms": 3566.76,
+        "error": null
+      },
+      "sk": {
+        "score": 1,
+        "reasoning": "The lead candidate describes a remote code execution vulnerability due to template injection, which aligns with the ground truth vulnerability GHSA-2024-rce1. Both the CWE classification (CWE-94) and the description of the issue match closely, indicating a clear correspondence.",
+        "corresponds_to": "GHSA-2024-rce1",
+        "source": "semantic_kernel",
+        "latency_ms": 2380.51,
+        "error": null
+      }
+    },
+    {
+      "test_id": "test_012",
+      "category": "false_positive_similar",
+      "expected_score": 0,
+      "lead": {
+        "headline": "XML External Entity injection",
+        "analysis": "XML parser allows external entity expansion without restrictions",
+        "cwe": "CWE-611",
+        "function_names": [
+          "parse_xml"
+        ],
+        "filenames": [
+          "parser/xml.py"
+        ]
+      },
+      "ground_truth": [
+        {
+          "id": "GHSA-2024-xxe2",
+          "summary": "XXE in SVG file upload",
+          "details": "SVG upload processing vulnerable to XXE",
+          "aliases": [
+            "CVE-2024-xxe2"
+          ]
+        }
+      ],
+      "adk": {
+        "score": 0,
+        "reasoning": "The candidate lead identifies an XML External Entity (XXE) injection (CWE-611) in a generic XML parser. The ground truth vulnerability also describes an XXE issue, but specifically in the context of 'SVG file upload' processing. While both are XXE, the ground truth specifies a particular attack vector or component (SVG file upload) that is not mentioned or implied by the more general description in the lead. Thus, it's not a clear one-to-one match without further information linking the lead's generic parser to the SVG upload functionality.",
+        "corresponds_to": null,
+        "source": "adk",
+        "latency_ms": 4161.81,
+        "error": null
+      },
+      "sk": {
+        "score": 0,
+        "reasoning": "The lead candidate describes an XML External Entity (XXE) injection vulnerability, which aligns with CWE-611. The ground truth vulnerability GHSA-2024-xxe2 also pertains to XXE issues, specifically in SVG file uploads, indicating a similar type of vulnerability. However, the specific context of the ground truth vulnerability does not directly match the lead's description of unrestricted external entity expansion in a general XML parser.",
+        "corresponds_to": null,
+        "source": "semantic_kernel",
+        "latency_ms": 3496.49,
+        "error": null
+      }
+    }
+  ],
+  "metrics": {
+    "adk": {
+      "true_positives": 7,
+      "false_positives": 0,
+      "true_negatives": 5,
+      "false_negatives": 0,
+      "correct_predictions": 12,
+      "latencies_ms": [
+        4400.92,
+        4021.01,
+        3314.88,
+        3784.05,
+        2313.58,
+        1120.16,
+        4751.49,
+        4135.88,
+        3332.05,
+        3067.09,
+        3566.76,
+        4161.81
+      ],
+      "errors": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "accuracy": 1.0,
+      "avg_latency_ms": 3497.4733333333334,
+      "min_latency_ms": 1120.16,
+      "max_latency_ms": 4751.49
+    },
+    "sk": {
+      "true_positives": 7,
+      "false_positives": 0,
+      "true_negatives": 5,
+      "false_negatives": 0,
+      "correct_predictions": 12,
+      "latencies_ms": [
+        4157.58,
+        2432.19,
+        3127.66,
+        1982.57,
+        1632.15,
+        2188.64,
+        2117.68,
+        4092.05,
+        2084.41,
+        2263.5,
+        2380.51,
+        3496.49
+      ],
+      "errors": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "accuracy": 1.0,
+      "avg_latency_ms": 2662.9525,
+      "min_latency_ms": 1632.15,
+      "max_latency_ms": 4157.58
+    }
+  }
+}

@@ -6,8 +6,7 @@ This module orchestrates three steps after the primary Ollama scan finishes:
 2. Forward each lead to an external ADK scoring service (with optional
    fallback to the local Ollama-based scorer) to obtain a binary score and
    supporting rationale.
-3. Aggregate the per-lead judgments into precision/recall style metrics that
-   mirror the eyeballvul paper.
+3. Aggregate the per-lead judgments into precision/recall style metrics
 """
 from __future__ import annotations
 

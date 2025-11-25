@@ -48,7 +48,12 @@ __pycache__/
 src/backend/ecosystem_data/
 
 # ----------------------------------------------------------------------------
-# 6. Git Files (Usually Not Ignored)
+# 6. Data & Repository Clones
+# ----------------------------------------------------------------------------
+data/repositories/
+
+# ----------------------------------------------------------------------------
+# 7. Git Files (Usually Not Ignored)
 # ----------------------------------------------------------------------------
 # Typically you do NOT ignore these, since Git needs them:
 # .git
